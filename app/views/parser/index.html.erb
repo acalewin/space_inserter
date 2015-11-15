@@ -1,0 +1,10 @@
+<h1>Parse Text</h1>
+
+<%= form_tag(parser_index_path, method: "post", class: "form") do %>
+  <%= text_area_tag(:text, @text, placeholder: "Enter text here", class: "form-control") %>
+  <%= submit_tag("Parse", class: "btn btn-primary") %>
+<% end %>
+
+<% if @spaced_text %>
+<pre id="spaced-text"><%= @spaced_text %></pre>
+<% end %>
