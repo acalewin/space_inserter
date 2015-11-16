@@ -6,10 +6,24 @@ class ParserController < ApplicationController
     @text = params[:text]
     @spaced_text = nil
     if !@text.nil? and !@text.empty?
-      @spaced_text = @text.split(/\n/).map {|s| MeCab::Tagger.new().parse(s).split(/\n/).map {|l| l.split}.keep_if {|x| x.size > 1}.map {|e| e[0]} .join(' ')}.join("\n")
+      @spaced_text = @text.split(/\n/).map {|s| MeCab::Tagger.new().parse(s).split(/\n/).map {|l| build_element(l)}}
     else
       @text = ""
     end
   end
 
+  private
+  def build_element(token)
+    term, info = token.split(/\t/)
+    stuff = []
+    term = '' if term == 'EOS'
+    if (info)
+      stuff = info.split(/,/)
+    end
+      
+      {
+        :term => term,
+        :pos => stuff.first
+      }
+  end
 end

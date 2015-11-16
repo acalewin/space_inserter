@@ -6,5 +6,5 @@
 <% end %>
 
 <% if @spaced_text %>
-<pre id="spaced-text"><%= @spaced_text %></pre>
+<pre id="spaced-text"><%  @spaced_text.each do |l| %><% l.each do |t| %><span class="<%= t[:pos] %>"><%= t[:term] %></span>&nbsp;<% end %><br><% end %></pre>
 <% end %>
