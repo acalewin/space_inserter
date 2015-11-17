@@ -49,3 +49,4 @@ end
 
 gem 'mecab'
 gem 'passenger'
+gem 'devise'
