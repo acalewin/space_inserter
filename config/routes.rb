@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   root 'parser#index'
   get 'parser/index'
   post 'parser/index'
